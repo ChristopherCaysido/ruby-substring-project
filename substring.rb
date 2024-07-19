@@ -4,9 +4,19 @@
 
 def substrings(string,dictionary)
   words = str_array(string)
+  
+  create_hash()
 end
 
 def str_to_array(string)
   string.tr('^a-zA-Z0-9 ','').split(" ")
+end
+
+
+def create_hash(array)
+  array.reduce(Hash.new(0)) do |subset, item|
+    subset[item] += 1
+    subset
+  end
 end
 
