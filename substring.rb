@@ -2,20 +2,20 @@
 #and then an array of valid substrings (your dictionary) as the second argument. 
 # It should return a hash listing each substring (case insensitive) that was found in the original string and how many times it was found.
 
-dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
-
 def substrings(string,dictionary)
-  words = str_to_array(string)
-  selected_words = create_array(words,dictionary)
-  create_hash(selected_words)
+  words = cln_str_to_arr(string)
+  selected_words = create_word_array(words,dictionary)
+  substring_hash(selected_words)
 end
 
-def str_to_array(string)
+# String -> Array
+# Removes symbols, downcases and turns string into an array
+def cln_str_to_arr(string)
   string.tr('^a-zA-Z0-9 ','').downcase.split(" ")
 end
 
-def create_array(words,dictionary)
-  # debugger
+
+def create_word_array(words,dictionary)
   to_hash = []
   words.each do |word|
     dictionary.each do |dict_entry|
@@ -27,13 +27,11 @@ def create_array(words,dictionary)
   to_hash
 end
 
-def create_hash(array)
+def substring_hash(array)
   array.reduce(Hash.new(0)) do |subset, item|
     subset[item] += 1
     subset
   end
 end
-
-puts substrings("Howdy partner, sit down! How's it going?",dictionary)
 
 
